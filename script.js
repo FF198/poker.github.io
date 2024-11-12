@@ -1,71 +1,61 @@
-// Define global variables
-let playerChips = 1000;
-let playerHand = [];
-let communityCards = [];
-let opponentHand = [];
+// Create a 3D card
+const cardGeometry = new THREE.BoxGeometry(1, 0.1, 1.4);
+const cardMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+const card = new THREE.Mesh(cardGeometry, cardMaterial);
 
-// Initialize game
-function initGame() {
-    playerHand = dealHand();
-    opponentHand = dealHand();
-    communityCards = [];
+// Position the card on the table
+card.position.set(0, 0.05, 0);
+scene.add(card);
 
-    // Show initial cards
-    displayPlayerHand();
-    displayCommunityCards();
-    displayOpponentHand();
-}
+// Card Deck Object
+const suits = ['♠', '♣', '♦', '♥'];
+const ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
 
-// Deal two cards to the player
-function dealHand() {
-    const suits = ['♠', '♣', '♦', '♥'];
-    const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
-    let hand = [];
-    for (let i = 0; i < 2; i++) {
-        let value = values[Math.floor(Math.random() * values.length)];
-        let suit = suits[Math.floor(Math.random() * suits.length)];
-        hand.push(value + suit);
+function createDeck() {
+    let deck = [];
+    for (let suit of suits) {
+        for (let rank of ranks) {
+            deck.push({ rank, suit });
+        }
     }
-    return hand;
+    return deck;
 }
 
-// Display player hand
-function displayPlayerHand() {
-    document.getElementById('yourCard1').innerText = playerHand[0];
-    document.getElementById('yourCard2').innerText = playerHand[1];
-}
-
-// Display opponent hand (hidden)
-function displayOpponentHand() {
-    document.getElementById('opponentCard1').innerText = "??";
-    document.getElementById('opponentCard2').innerText = "??";
-}
-
-// Display community cards
-function displayCommunityCards() {
-    communityCards.forEach((card, index) => {
-        document.getElementById('card' + (index + 1)).innerText = card;
-    });
-}
-
-// Button for dealing flop, turn, and river
-document.getElementById('betButton').addEventListener('click', () => {
-    // Placeholder for betting and dealing community cards
-    if (communityCards.length < 5) {
-        dealCommunityCard();
+function shuffleDeck(deck) {
+    for (let i = deck.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [deck[i], deck[j]] = [deck[j], deck[i]]; // Swap elements
     }
-});
-
-// Deal community card (Flop, Turn, River)
-function dealCommunityCard() {
-    const suits = ['♠', '♣', '♦', '♥'];
-    const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
-    let value = values[Math.floor(Math.random() * values.length)];
-    let suit = suits[Math.floor(Math.random() * suits.length)];
-    let card = value + suit;
-    communityCards.push(card);
-    displayCommunityCards();
+    return deck;
 }
 
-// Initialize the game when the page loads
-initGame();
+const deck = shuffleDeck(createDeck());
+console.log(deck); // View shuffled deck
+
+// Create card texture
+const textureLoader = new THREE.TextureLoader();
+const cardTexture = textureLoader.load('path_to_card_image.jpg'); // Use a card image texture
+
+const cardMaterial = new THREE.MeshBasicMaterial({ map: cardTexture });
+const card = new THREE.Mesh(cardGeometry, cardMaterial);
+scene.add(card);
+
+function placeBet(amount) {
+    // Handle placing a bet
+    console.log('Placing bet of $' + amount);
+}
+
+function fold() {
+    // Handle folding action
+    console.log('You folded');
+}
+
+function call() {
+    // Handle calling action
+    console.log('You called');
+}
+
+// Play sound when a card is dealt
+let audio = new Audio('path_to_deal_sound.mp3');
+audio.play();
+
