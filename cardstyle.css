@@ -1,0 +1,75 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1b2a34;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#game-container {
+    text-align: center;
+    background-color: #3e4e62;
+    border-radius: 15px;
+    padding: 20px;
+    width: 60%;
+}
+
+#table {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#community-cards, #player-cards, #opponent-cards {
+    margin: 0 20px;
+}
+
+.card {
+    width: 80px;
+    height: 120px;
+    background-color: white;
+    border-radius: 8px;
+    display: inline-block;
+    margin: 10px;
+    position: relative;
+    border: 2px solid #333;
+    font-size: 1.5em;
+}
+
+.card .rank {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.card .suit {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+#betting-area {
+    margin-top: 20px;
+}
+
+button {
+    background-color: #e14e1e;
+    border: none;
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+input {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+}
