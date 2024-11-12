@@ -3,20 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Command Prompt Poker Game</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            color: #333;
-            text-align: center;
-            padding: 20px;
-        }
-    </style>
+    <title>Poker Game - WPT Style</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Welcome to Command Prompt Poker!</h1>
-    <p>Open the console (F12) to play the game.</p>
-    <script src="poker.js"></script>
+    <div id="game-container">
+        <div id="player-info">
+            <h2>Player 1 - Chips: $1000</h2>
+            <button id="betButton">Place Bet</button>
+        </div>
+        <div id="table">
+            <div id="community-cards">
+                <h3>Community Cards</h3>
+                <div class="card" id="card1"></div>
+                <div class="card" id="card2"></div>
+                <div class="card" id="card3"></div>
+                <div class="card" id="card4"></div>
+                <div class="card" id="card5"></div>
+            </div>
+            <div id="player-cards">
+                <h3>Your Hand</h3>
+                <div class="card" id="yourCard1"></div>
+                <div class="card" id="yourCard2"></div>
+            </div>
+            <div id="opponent-cards">
+                <h3>Opponent's Cards</h3>
+                <div class="card" id="opponentCard1"></div>
+                <div class="card" id="opponentCard2"></div>
+            </div>
+        </div>
+        <div id="betting-area">
+            <input type="number" id="betAmount" placeholder="Enter bet amount">
+            <button id="betButton">Bet</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
+2. CSS for Styling (style.css)
+Here’s the CSS to style the poker game, giving it a feel similar to WPT.
+
+css
+Copy code
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1b2a34;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#game-container {
+    text-align: center;
+    background-color: #3e4e62;
+    border-radius: 15px;
+    padding: 20px;
+    width: 60%;
+}
+
+#table {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#community-cards, #player-cards, #opponent-cards {
+    margin: 0 20px;
+}
+
+.card {
+    width: 60px;
+    height: 90px;
+    background-color: #d5d8dc;
+    border-radius: 8px;
+    display: inline-block;
+    margin: 10px;
+}
+
+#betting-area {
+    margin-top: 20px;
+}
+
+button {
+    background-color: #e14e1e;
+    border: none;
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+input {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+}
